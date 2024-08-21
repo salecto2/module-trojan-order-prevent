@@ -78,7 +78,7 @@ class TrojanOrderPreventShippingAddress
             // Iterate through our banned strings.
             foreach ($this->strings_to_find as $string) {
                 if (strpos($fields, $string) !== false) {
-                    throw new AccessDeniedHttpException('This request is not permitted.Kapil');
+                    throw new AccessDeniedHttpException('This request is not permitted.');
                 }
             }
         }
