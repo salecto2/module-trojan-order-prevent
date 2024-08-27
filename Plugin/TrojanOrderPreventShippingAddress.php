@@ -91,15 +91,16 @@ class TrojanOrderPreventShippingAddress
      */
     private function filterOutExtensionAttributes(array $data): array
     {
-        foreach ($data as $value) {
+        foreach ($data as &$value) {
             if (is_array($value)) {
                 if (array_key_exists('extension_attributes', $value)) {
                     if (isset($value['extension_attributes']['aw_onsale_label'])) {
                         unset($value['extension_attributes']['aw_onsale_label']);
                     }
                 }
+                $value = $this->filterOutExtensionAttributes($value);
             }
         }
-        return $value;
+        return $data;
     }
 }
