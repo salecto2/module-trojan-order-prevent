@@ -85,7 +85,7 @@ class TrojanOrderPreventShippingAddress
     }
 
     /**
-     *Compatible with Aheadworks One Step checkout and Product Labels
+     * Compatible with Aheadworks One Step checkout and Product Labels
      * @param array $data
      * @return array
      */
