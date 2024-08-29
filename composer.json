@@ -1,5 +1,5 @@
 {
-  "name": "deployecommerce/module-trojan-order-prevent",
+  "name": "salecto2/module-trojan-order-prevent",
   "description": "A Magento2 extension that prevents billing/shipping addresses being saved via the API with known trojan order strings.",
   "type": "magento2-module",
   "keywords": [

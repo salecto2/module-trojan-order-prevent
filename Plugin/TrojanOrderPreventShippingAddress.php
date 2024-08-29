@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace DeployEcommerce\TrojanOrderPrevent\Plugin;
 
 use Magento\Quote\Api\Data\AddressInterface;
@@ -69,11 +71,9 @@ class TrojanOrderPreventShippingAddress
     ): array {
         if ($this->state->getAreaCode() === \Magento\Framework\App\Area::AREA_WEBAPI_REST) {
             $fields = $this->request->getBodyParams();
-
-            // For speed and ease of checking, flatten the array into a string.
+            $fields = $this->filterOutExtensionAttributes($fields);
             $fields = strtolower(json_encode($fields));
 
-            // Iterate through our banned strings.
             foreach ($this->strings_to_find as $string) {
                 if (strpos($fields, $string) !== false) {
                     throw new AccessDeniedHttpException('This request is not permitted.');
@@ -82,5 +82,25 @@ class TrojanOrderPreventShippingAddress
         }
 
         return [$cartId, $address];
+    }
+
+    /**
+     * Compatible with Aheadworks One Step checkout and Product Labels
+     * @param array $data
+     * @return array
+     */
+    private function filterOutExtensionAttributes(array $data): array
+    {
+        foreach ($data as &$value) {
+            if (is_array($value)) {
+                if (array_key_exists('extension_attributes', $value)) {
+                    if (isset($value['extension_attributes']['aw_onsale_label'])) {
+                        unset($value['extension_attributes']['aw_onsale_label']);
+                    }
+                }
+                $value = $this->filterOutExtensionAttributes($value);
+            }
+        }
+        return $data;
     }
 }
