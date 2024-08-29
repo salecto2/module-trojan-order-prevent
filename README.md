@@ -26,7 +26,7 @@ If these are detected in the payload then an Exception is thrown and the address
 
 ### Installation
 ```bash
-composer require deployecommerce/module-trojan-order-prevent
+composer require salecto2/module-trojan-order-prevent
 bin/magento mo:e DeployEcommerce_TrojanOrderPrevent
 ```
 
