@@ -27,7 +27,7 @@ If these are detected in the payload then an Exception is thrown and the address
 ### Installation
 ```bash
 composer require salecto2/module-trojan-order-prevent
-bin/magento mo:e DeployEcommerce_TrojanOrderPrevent
+bin/magento module:enable DeployEcommerce_TrojanOrderPrevent
 ```
 
 ### Further Reading
@@ -40,3 +40,7 @@ bin/magento mo:e DeployEcommerce_TrojanOrderPrevent
 ### License
 
 This module is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for details.
+
+| Our Forked Module | Original Module  |
+| ------ | ------ |
+| v1.1.0 | Based of v1.0.4 |
